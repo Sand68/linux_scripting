@@ -1,0 +1,87 @@
+#!/bin/bash
+#Assignment: Lab09
+#Keshav Sandhu, 040994718
+#CST8102, 310
+#mycalc.sh
+#Date: April, 12 2021
+#Descripton: A script program which let the user enter two integers which will further make calculations of addition and subtraction between these two integers by calling their specific function with passing them as arguments.
+
+
+if [ $# = 3 ]
+then
+a=$1
+b=$2
+c=$3
+
+echo $a $b $c
+if [[ $b = "+" ]]
+then
+        sum=$(( a + c ))
+        echo "Total is "$sum
+elif [[ $b = "-" ]]
+then
+        result=$(( a - c ))
+        echo "Result is "$result
+fi
+fi
+
+if [ $# = 0 ]
+then
+while [ "$m" != "X" ] || [ "$m" != "x" ]
+do
+
+        function add ()
+        {
+                local a=$1
+                echo -e "enter second integer number: \c" ; read num
+                sum=$(( a + num ))
+                return $sum
+        }
+	function subtract ()
+        {
+                 local a=$1
+                 echo -e "enter second integer number: \c" ; read num
+                 sub=$(( a - num ))
+                 return $sub
+        }
+
+
+        echo "Menu 1"
+        echo "(C) Calculation"
+        echo "(X) Exit"
+        echo -e "enter your choice: \c" ; read m
+
+        if [ "$m" = "C" ] || [ "$m" = "c" ]
+        then clear
+                echo -e "enter an integer number: \c" ; read aNumber
+
+                echo "Menu 2"
+                echo "(+) Add"
+                echo "(-) Subtract"
+                echo "(X) Exit"
+                echo -e "enter your choice: \c" ; read m
+
+                if [ $m = "+" ]
+                then add $aNumber
+                        echo "the sum of $aNumber plus $num will be: "$sum
+                        sleep 3
+                        clear
+                elif [ $m = "-" ]
+                then subtract $aNumber
+                        echo "the subtraction of $aNumber minus $num will be: "$sub
+                        sleep 3    
+		    	clear
+                fi
+		elif [ "$m" = "X" ] || [ "$m" = "x" ]
+        	then break
+        	fi
+done
+fi
+
+if [ $# != "0" ] && [ $# != "3" ]
+then
+        echo "incorrect parameteres"
+fi
+
+echo "Have a good day."
+
